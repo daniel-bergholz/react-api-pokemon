@@ -1,3 +1,9 @@
 .container {
   text-align: center;
 }
+
+.loading {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
