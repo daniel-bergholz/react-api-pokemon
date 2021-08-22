@@ -1,14 +1,26 @@
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import styles from './styles.module.css'
+import api from '../../services/api'
 
 interface IParams {
   pokemon: string
 }
 
 const Pokemon: React.FC = () => {
-  const { pokemon } = useParams<IParams>()
+  const [pokemon, setPokemon] = useState()
+  const { pokemon: pokemonName } = useParams<IParams>()
 
-  return <h1>pagina do pokemon: {pokemon}</h1>
+  const getPokemonInfo = async () => {
+    const { data } = await api.get(`pokemon/${pokemonName}`)
+
+    setPokemon(data)
+  }
+
+  useEffect(() => {
+    getPokemonInfo()
+  }, [])
+
+  return <h1>pagina do pokemon: {pokemonName}</h1>
 }
 
 export default Pokemon
