@@ -25,8 +25,6 @@ function Home() {
     setPokemons(data.results)
   }
 
-  console.log({ pokemons })
-
   return (
     <div className={styles.container}>
       <img
@@ -34,12 +32,9 @@ function Home() {
         alt="Pokemon Logo"
         onClick={() => getAllPokemons()}
       />
-      <PokemonItem name="pikachu" />
-      <PokemonItem name="charmander" />
-      <PokemonItem name="bulbasauro" />
-      <PokemonItem name="ditto" />
-      <PokemonItem name="delibird" />
-      <PokemonItem name="mantine" />
+      {pokemons?.map((pokemon) => (
+        <PokemonItem name={pokemon.name} key={pokemon.name} />
+      ))}
     </div>
   )
 }
