@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import api from '../../services/api'
 import styles from './styles.module.css'
 
@@ -32,18 +32,24 @@ const Pokemon: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h1>{pokemon?.name}</h1>
+      <h1 className={styles.title}>{pokemon?.name}</h1>
       <img
         src={pokemon?.sprites.other['official-artwork'].front_default}
         alt=""
       />
-      <h2>Altura: {pokemon?.height}</h2>
-      <h2>Peso: {pokemon?.weight}</h2>
-      <h2>Tipos: {pokemon?.types.map((type) => type.type.name).join(', ')}</h2>
-      <h2>
+      <h2 className={styles.card}>Altura: {pokemon?.height}</h2>
+      <h2 className={styles.card}>Peso: {pokemon?.weight}</h2>
+      <h2 className={styles.card}>
+        Tipos: {pokemon?.types.map((type) => type.type.name).join(', ')}
+      </h2>
+      <h2 className={styles.card}>
         Habilidades:{' '}
         {pokemon?.abilities.map((ability) => ability.ability.name).join(', ')}
       </h2>
+
+      <Link to="/">
+        <button className={styles.button}>Voltar</button>
+      </Link>
     </div>
   )
 }
