@@ -4,6 +4,11 @@ import styles from './styles.module.css'
 import api from '../../services/api'
 
 function Home() {
+  const getAllPokemons = async () => {
+    const pokemons = await api.get('pokemon')
+    return pokemons
+  }
+
   return (
     <div className={styles.container}>
       <img src={PokemonLogo} alt="Pokemon Logo" />
