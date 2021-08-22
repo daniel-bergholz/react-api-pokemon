@@ -1,6 +1,7 @@
 import PokemonItem from '../../components/PokemonItem'
 import PokemonLogo from '../../assets/images/pokemon.png'
 import styles from './styles.module.css'
+import api from '../../services/api'
 
 function Home() {
   return (
