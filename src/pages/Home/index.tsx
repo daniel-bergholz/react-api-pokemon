@@ -1,17 +1,27 @@
-import PokemonItem from '../../components/PokemonItem'
+import { useState } from 'react'
 import PokemonLogo from '../../assets/images/pokemon.png'
-import styles from './styles.module.css'
+import PokemonItem from '../../components/PokemonItem'
 import api from '../../services/api'
+import styles from './styles.module.css'
 
 function Home() {
+  const [pokemons, setPokemons] = useState()
+
   const getAllPokemons = async () => {
-    const pokemons = await api.get('pokemon')
-    return pokemons
+    const { data } = await api.get('pokemon')
+
+    setPokemons(data.results)
   }
+
+  console.log({ pokemons })
 
   return (
     <div className={styles.container}>
-      <img src={PokemonLogo} alt="Pokemon Logo" />
+      <img
+        src={PokemonLogo}
+        alt="Pokemon Logo"
+        onClick={() => getAllPokemons()}
+      />
       <PokemonItem name="pikachu" />
       <PokemonItem name="charmander" />
       <PokemonItem name="bulbasauro" />
